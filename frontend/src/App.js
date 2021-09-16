@@ -86,7 +86,7 @@ function App() {
             >
               <Room 
                 style={{ fontSize: viewport.zoom * 3, color: p.username === currentUser ? "tomato" : "slateblue", cursor: "pointer" }}
-                onClick={() => handleMarkerClick(p._id, p.lat, p.long)} 
+                onDblClick={() => handleMarkerClick(p._id, p.lat, p.long)} 
               />
             </Marker>
 
