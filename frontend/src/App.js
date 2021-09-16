@@ -6,7 +6,9 @@ import './app.css';
 import { format } from "timeago.js";
 
 function App() {
+  const currentUser = "ejoka";
   const [pins, setPins] = useState([]);
+  const [currentPlaceId, setCurrentPlaceId] = useState(null);
   const [viewport, setViewport] = useState({
     width: "100vw",
     height: "100vh",
@@ -27,6 +29,10 @@ function App() {
     getPins();
   })
 
+  const handleMarkerClick = (id) => {
+    setCurrentPlaceId(id);
+  }
+
   return (
     <div className="App">
       <ReactMapGL
@@ -43,32 +49,40 @@ function App() {
               offsetLeft={-20}
               offsetTop={-10}
             >
-              <Room style={{ fontSize: viewport.zoom * 3, color: "slateblue" }} />
+              <Room 
+                style={{ fontSize: viewport.zoom * 3, color: p.username === currentUser ? "tomato" : "slateblue", cursor: "pointer" }}
+                onClick={() => handleMarkerClick(p._id)} 
+              />
             </Marker>
-            <Popup
-              latitude={p.lat}
-              longitude={p.long}
-              closeButton={true}
-              closeOnClick={false}
-              anchor="left" >
-              <div className="card">
-                <label>Place</label>
-                <h4 className="place">{p.title}</h4>
-                <label>Review</label>
-                <p className="desc">{p.desc}</p>
-                <label>Review</label>
-                <div className="stars">
-                  <Star className="star" />
-                  <Star className="star" />
-                  <Star className="star" />
-                  <Star className="star" />
-                  <Star className="star" />
+
+            { p._id === currentPlaceId &&
+              <Popup
+                latitude={p.lat}
+                longitude={p.long}
+                closeButton={true}
+                closeOnClick={false}
+                anchor="left" 
+                onClose={() => setCurrentPlaceId(null)}
+              >
+                <div className="card">
+                  <label>Place</label>
+                  <h4 className="place">{p.title}</h4>
+                  <label>Review</label>
+                  <p className="desc">{p.desc}</p>
+                  <label>Review</label>
+                  <div className="stars">
+                    <Star className="star" />
+                    <Star className="star" />
+                    <Star className="star" />
+                    <Star className="star" />
+                    <Star className="star" />
+                  </div>
+                  <label>Information</label>
+                  <span className="username">Created by <b>{p.username}</b></span>
+                  <span className="date">{format(p.createdAt)}</span>
                 </div>
-                <label>Information</label>
-                <span className="username">Created by <b>{p.username}</b></span>
-                <span className="date">{format(p.createdAt)}</span>
-              </div>
-            </Popup>
+              </Popup>
+            }
           </>
         ))}
       </ReactMapGL>
