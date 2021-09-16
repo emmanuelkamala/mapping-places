@@ -9,6 +9,7 @@ function App() {
   const currentUser = "ejoka";
   const [pins, setPins] = useState([]);
   const [currentPlaceId, setCurrentPlaceId] = useState(null);
+  const [newPlace, setNewPlace] = useState(null);
   const [viewport, setViewport] = useState({
     width: "100vw",
     height: "100vh",
@@ -33,6 +34,13 @@ function App() {
     setCurrentPlaceId(id);
   }
 
+  const handleAddClick = (e) => {
+    const [long, lat] = e.lngLat;
+    setNewPlace({
+      lat, long
+    })
+  }
+
   return (
     <div className="App">
       <ReactMapGL
@@ -40,6 +48,7 @@ function App() {
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX}
         onViewportChange={(nextViewport) => setViewport(nextViewport)}
         mapStyle="mapbox://styles/ejoka/cktmgtr0n6wto18wb9c4fogyt"
+        onClick={handleAddClick}
       >
         {pins.map(p =>(
           <>
@@ -85,6 +94,20 @@ function App() {
             }
           </>
         ))}
+        {
+          newPlace && (
+            <Popup
+              latitude={newPlace.lat}
+              longitude={newPlace.long}
+              closeButton={true}
+              closeOnClick={false}
+              anchor="left" 
+              onClose={() => setNewPlace(null)}
+            >
+            hi emma
+            </Popup>
+          )
+        }
       </ReactMapGL>
     </div>
   );
