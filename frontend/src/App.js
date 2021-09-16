@@ -38,14 +38,14 @@ function App() {
             <label>Place</label>
             <h4 className="place">Askari Monument</h4>
             <label>Review</label>
-            <p>Oldest statue in the city of Dar</p>
+            <p className="desc">Oldest statue in the city of Dar</p>
             <label>Review</label>
             <div className="stars">
-              <Star />
-              <Star />
-              <Star />
-              <Star />
-              <Star />
+              <Star className="star" />
+              <Star className="star" />
+              <Star className="star" />
+              <Star className="star" />
+              <Star className="star" />
             </div>
             <label>Information</label>
             <span className="username">Created by <b>Emmanuel</b></span>
