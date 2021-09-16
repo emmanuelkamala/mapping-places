@@ -1,9 +1,9 @@
 # Mapping Places
 It's an app that pins location of different places. A user can create a review about the place he/she visited and add rating to the place. A user can register on the app and when a user logs in, a user can see the user's pin location color coded differently compared to other users. 
 
-![screenshot](./public/images/1.png)
-![screenshot](./public/images/2.png)
-![screenshot](./public/images/3.png)
+![screenshot](./frontend/public/images/1.png)
+![screenshot](./frontend/public/images/2.png)
+![screenshot](./frontend/public/images/3.png)
 
 # Live Link
 <a href="https://ejokadashboard.netlify.app/">Click Here</a>
