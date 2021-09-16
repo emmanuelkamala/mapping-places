@@ -3,20 +3,23 @@ import axios from 'axios';
 import React, { useRef, useState } from 'react';
 import './login.css';
 
-const Login = ({ setShowLogin }) => {
+const Login = ({ setShowLogin, myStorage, setCurrentUser }) => {
   const [error, setError] = useState(false);
   const nameRef = useRef();
   const passwordRef = useRef();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const newUser = {
+    const user = {
       username: nameRef.current.value,
       password: passwordRef.current.value,
     }
 
     try {
-      await axios.post('/users/register', newUser);
+      const res = await axios.post('/users/login', user);
+      myStorage.setItem("user", res.data.username);
+      setCurrentUser(res.data.username);
+      setShowLogin(false);
       setError(false);
 
     } catch (error) {
@@ -26,7 +29,7 @@ const Login = ({ setShowLogin }) => {
 
   return (
     <div className="loginContainer">
-      <div className="logo">
+      <div className="loginLogo">
         <Room />
         EjokaPin
       </div>

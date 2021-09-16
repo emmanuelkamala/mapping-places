@@ -1,6 +1,6 @@
-.registerContainer {
-  width: 400px;
-  height: 400px;
+.loginContainer {
+  width: 250px;
+  height: 250px;
   padding: 20px;
   border-radius: 10px;
   background-color: white;
@@ -20,8 +20,8 @@ input {
   font-size: 1.2rem;
 }
 
-.logo {
-  color: slateblue;
+.loginLogo {
+  color: teal;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -30,20 +30,14 @@ input {
   font-size: 1.5rem;
 }
 
-.registerButton {
+.loginButton {
   border: none;
   padding: 5px;
   border-radius: 5px;
   color: white;
-  background-color: slateblue;
+  background-color: teal;
   cursor: pointer;
   font-size: 1.2rem;
-}
-
-.success {
-  color: green;
-  font-size: 0.8rem;
-  text-align: center;
 }
 
 .failure {
@@ -52,7 +46,7 @@ input {
   text-align: center;
 }
 
-.registerCancel {
+.loginCancel {
   position: absolute;
   top: 5px;
   right: 5px;

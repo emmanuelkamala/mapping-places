@@ -22,7 +22,6 @@ const Register = ({ setShowRegister }) => {
       await axios.post('/users/register', newUser);
       setError(false);
       setSuccess(true);
-
     } catch (error) {
       console.log(error);
     }
