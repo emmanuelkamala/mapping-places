@@ -1,9 +1,9 @@
-import { Room } from '@material-ui/icons';
+import { Cancel, Room } from '@material-ui/icons';
 import axios from 'axios';
 import React, { useRef, useState } from 'react';
 import './register.css';
 
-const Register = () => {
+const Register = ({ setShowRegister }) => {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
   const nameRef = useRef();
@@ -46,8 +46,8 @@ const Register = () => {
           error && (<span className="failure">Sorry, something went wrong, try again!</span>)
         }
     
-      </form>
-      
+      </form> 
+      <Cancel className="registerCancel" onClick={() => setShowRegister(false)} />
     </div>
   )
 }

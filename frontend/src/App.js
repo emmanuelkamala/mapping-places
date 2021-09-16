@@ -5,6 +5,7 @@ import axios from 'axios';
 import './app.css';
 import { format } from "timeago.js";
 import Register from "./components/register/Register";
+import Login from "./components/login/Login";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -13,6 +14,8 @@ function App() {
   const [newPlace, setNewPlace] = useState(null);
   const [title, setTitle] = useState(null);
   const [desc, setDesc] = useState(null);
+  const [showRegister, setShowRegister] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
   const [rating, setRating] = useState(0);
   const [viewport, setViewport] = useState({
     width: "100vw",
@@ -73,7 +76,7 @@ function App() {
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX}
         onViewportChange={(nextViewport) => setViewport(nextViewport)}
         mapStyle="mapbox://styles/ejoka/cktmgtr0n6wto18wb9c4fogyt"
-        onClick={handleAddClick}
+        onDblClick={handleAddClick}
         transitionDuration="800"
       >
         {pins.map(p =>(
@@ -86,7 +89,7 @@ function App() {
             >
               <Room 
                 style={{ fontSize: viewport.zoom * 3, color: p.username === currentUser ? "tomato" : "slateblue", cursor: "pointer" }}
-                onDblClick={() => handleMarkerClick(p._id, p.lat, p.long)} 
+                onClick={() => handleMarkerClick(p._id, p.lat, p.long)} 
               />
             </Marker>
 
@@ -152,12 +155,14 @@ function App() {
             <button className="button logout">Log out</button>
           ) : (
             <div className="buttons">
-              <button className="button login">Login</button>
-              <button className="button register">Register</button>
+              <button className="button login" onClick={() => setShowLogin(true)}>Login</button>
+              <button className="button register" onClick={() => setShowRegister(true)}>Register</button>
             </div>
           )
         }
         <Register />
+        { showRegister && <Register setShowRegister={setShowRegister} />}
+        { showLogin && <Login setShowLogin={setShowLogin} />}
       </ReactMapGL>
     </div>
   );
