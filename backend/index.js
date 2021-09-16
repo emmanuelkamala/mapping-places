@@ -2,6 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import pinRouter from './routes/pins.js';
+import userRouter from './routes/users.js';
 
 dotenv.config();
 
@@ -16,6 +17,7 @@ mongoose.connect(process.env.MONGO_URL, {
   .catch((error)=>console.log(error))
 
 app.use('/api/pins', pinRouter);
+app.use('/api/users', userRouter);
 
 const PORT = process.env.PORT || 5000;
 

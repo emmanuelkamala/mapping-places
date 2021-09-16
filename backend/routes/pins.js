@@ -25,7 +25,7 @@ pinRouter.get('/', async (req, res) => {
     const pins = await Pin.find();
     res.status(200).json(pins);
   } catch (error) {
-    res.status(500).json(error);
+    res.status(500).json({ error: error.message });
   }
 })
 
