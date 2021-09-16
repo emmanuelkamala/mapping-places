@@ -4,9 +4,10 @@ import { Room, Star } from '@material-ui/icons';
 import axios from 'axios';
 import './app.css';
 import { format } from "timeago.js";
+import Register from "./components/register/Register";
 
 function App() {
-  const currentUser = "ejoka";
+  const [currentUser, setCurrentUser] = useState(null);
   const [pins, setPins] = useState([]);
   const [currentPlaceId, setCurrentPlaceId] = useState(null);
   const [newPlace, setNewPlace] = useState(null);
@@ -156,6 +157,7 @@ function App() {
             </div>
           )
         }
+        <Register />
       </ReactMapGL>
     </div>
   );
