@@ -5,8 +5,8 @@ It's an app that pins location of different places. A user can create a review a
 ![screenshot](./frontend/public/images/2.png)
 ![screenshot](./frontend/public/images/3.png)
 
-# Live Link
-<a href="https://ejokadashboard.netlify.app/">Click Here</a>
+# Live Demo
+Coming soon...
 
 
 ## Built With
