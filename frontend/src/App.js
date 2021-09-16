@@ -30,8 +30,9 @@ function App() {
     getPins();
   })
 
-  const handleMarkerClick = (id) => {
+  const handleMarkerClick = (id, lat, long) => {
     setCurrentPlaceId(id);
+    setViewport({...viewport, latitude: lat, longitude: long})
   }
 
   const handleAddClick = (e) => {
@@ -49,6 +50,7 @@ function App() {
         onViewportChange={(nextViewport) => setViewport(nextViewport)}
         mapStyle="mapbox://styles/ejoka/cktmgtr0n6wto18wb9c4fogyt"
         onClick={handleAddClick}
+        transitionDuration="800"
       >
         {pins.map(p =>(
           <>
@@ -60,7 +62,7 @@ function App() {
             >
               <Room 
                 style={{ fontSize: viewport.zoom * 3, color: p.username === currentUser ? "tomato" : "slateblue", cursor: "pointer" }}
-                onClick={() => handleMarkerClick(p._id)} 
+                onClick={() => handleMarkerClick(p._id, p.lat, p.long)} 
               />
             </Marker>
 
